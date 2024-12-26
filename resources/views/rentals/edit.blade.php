@@ -1,0 +1,97 @@
+<x-app-layout>
+    <x-slot name="header">
+    <div class="flex justify-between">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Rental / Edit') }}
+        </h2>
+        <a href="{{route('rental.index')}}" class="bg-slate-700 text-sm rounded-md px-3 py-3 text-white">Back</a>
+    </div>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <form action="{{route('rental.update',$rental->id)}}" method="post">
+                        @csrf
+                        <div>
+                            <label for="" class="text-lg font-medium">Name</label>
+                            <div  class="my-3">
+                                <input placeholder="Enter Name" type="text" class="border-gray-300 shadow-sm w-1/2 rounded-lg" id="" name="name" value="{{old('name',$rental->name)}}">
+                                @error('name')
+                                    <p class="text-red-400 font-medium">{{$message}}</p>
+                                @enderror
+                            </div>
+                            <label for="" class="text-lg font-medium">Email</label>
+                            <div  class="my-3">
+                                <input placeholder="Enter Email" class="border-gray-300 shadow-sm w-1/2 rounded-lg" id="" type="email" name="email" value="{{old('email',$rental->email)}}">
+                                @error('email')
+                                    <p class="text-red-400 font-medium">{{$message}}</p>
+                                @enderror
+                            </div>
+                            <label for="" class="text-lg font-medium">Contact</label>
+                            <div  class="my-3">
+                                <input placeholder="Enter Contact" type="number" class="border-gray-300 shadow-sm w-1/2 rounded-lg" id="" name="contact" value="{{old('contact',$rental->contact)}}">
+                                @error('contact')
+                                    <p class="text-red-400 font-medium">{{$message}}</p>
+                                @enderror
+                            </div>
+                            <label for="" class="text-lg font-medium">Alt. Contact</label>
+                            <div  class="my-3">
+                                <input placeholder="Enter Contact" type="number" class="border-gray-300 shadow-sm w-1/2 rounded-lg" id="" name="alt_contact" value="{{old('alt_contact',$rental->alt_contact)}}">
+                                @error('alt_contact')
+                                    <p class="text-red-400 font-medium">{{$message}}</p>
+                                @enderror
+                            </div>
+                            <label for="" class="text-lg font-medium">Deposit</label>
+                            <div  class="my-3">
+                                <input placeholder="Enter Contact" type="number" class="border-gray-300 shadow-sm w-1/2 rounded-lg" id="" name="deposit" value="{{old('deposit',$rental->deposit)}}">
+                                @error('deposit')
+                                    <p class="text-red-400 font-medium">{{$message}}</p>
+                                @enderror
+                            </div>
+                            <label for="" class="text-lg font-medium">Subscription</label>
+                            <div  class="my-3">
+                                <input placeholder="Enter Contact" type="number" class="border-gray-300 shadow-sm w-1/2 rounded-lg" id="" name="subscription" value="{{old('subscription',$rental->subscription)}}">
+                                @error('subscription')
+                                    <p class="text-red-400 font-medium">{{$message}}</p>
+                                @enderror
+                            </div>
+                            <label for="" class="text-lg font-medium">Address</label>
+                            <div  class="my-3">
+                                <textarea placeholder="Enter Address" type="text" class="border-gray-300 shadow-sm w-1/2 rounded-lg" id="" name="address" >{{old('address',$rental->address)}}</textarea>
+                                @error('address')
+                                    <p class="text-red-400 font-medium">{{$message}}</p>
+                                @enderror
+                        </div>
+                        <label for="payment">Model</label>
+                        <div class="my-3">
+                                            <select id="model" name="model" class="w-1/2">
+                                                <option value="">Select Model</option>
+                                                    <option @if($rental->model == 'drinktech_copper') selected @endif value="drinktech_copper">Drinktech Copper</option>
+                                                    <option @if($rental->model == 'drinktech_alkaline') selected @endif value="drinktech_alkaline">Drinktech Alkaliine</option>
+                                            </select>
+                                            @error('model')
+                                        <p class="text-red-400 font-medium">{{$message}}</p>
+                                        @enderror
+                                    </div>
+                        <label for="payment">Status</label>
+                        <div class="my-3">
+                                            <select id="status" name="status" class="w-1/2">
+                                                <option value="">Select status</option>
+                                                    <option @if($rental->status == 'active') selected @endif value="active">Active</option>
+                                                    <option @if($rental->status == 'expired') selected @endif value="expired">Expired</option>
+                                            </select>
+                                            @error('status')
+                                        <p class="text-red-400 font-medium">{{$message}}</p>
+                                        @enderror
+                                    </div>
+                           <input type="hidden" name="rental_id" value="{{$rental->rental_id}}">
+                           <button type="submit" class="bg-slate-700 text-sm rounded-md px-5 py-3 text-white">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>

@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+ RewriteCond %{REQUEST_URI} !/public/
+ RewriteRule (.*) //public/$1 [L]
+ </IfModule>
+# RewriteCond %{HTTP_HOST} ^www\.webfillsolution\.com$
+# RewriteRule ^(.*)$ "https\:\/\/www\.webfillsolution\.com\/$1" [R=301,L]
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-SSL} !on
+RewriteCond %{HTTP_HOST} ^webfillsolution\.com$
+RewriteRule ^(.*)$ "https\:\/\/webfillsolution\.com\/$1" [R=301,L]
+RewriteCond %{HTTP_HOST} ^webfillsolution\.com$
+RewriteRule ^development\/flutter\-app\-development\-company\-in\-noida\/?(.*)$ "https\:\/\/webfillsolution\.com\/development\/flutter\-app\-development\-company\-in\-india$1" [R=301,L]
